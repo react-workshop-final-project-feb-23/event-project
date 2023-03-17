@@ -1,9 +1,12 @@
 import './EventMain.css'
+import EventResultList from './EventResultList';
+import EventSearchForm from './EventSearchForm';
 
 const EventMain = () => {
   return (
     <div className='EventMain'>
-        EventMain works
+      <EventSearchForm/>
+      <EventResultList/>
     </div>
   )
 };
