@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<EventMain/>} />
           <Route path="/search" element={<EventMain/>} />
-          <Route path="/gif/:id" element={<EventDetails/>} />
+          <Route path="/event/:id" element={<EventDetails/>} />
           {/* Wildcard - redirect - asterick*/}
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/favorites" element={<EventResultList/>} />
