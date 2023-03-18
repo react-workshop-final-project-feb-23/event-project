@@ -5,8 +5,8 @@ import EventSearchForm from './EventSearchForm';
 const EventMain = () => {
   return (
     <div className='EventMain'>
-      <EventSearchForm/>
-      <EventResultList/>
+      {/* <EventSearchForm/>
+      <EventResultList/> */}
     </div>
   )
 };

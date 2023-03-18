@@ -14,7 +14,6 @@ import EventResultList from "./EventResultList";
 function App() {
   return (
     <div className="App">
-      <h1>App working</h1>
       <Router>
         <EventHeader />
         <Routes>

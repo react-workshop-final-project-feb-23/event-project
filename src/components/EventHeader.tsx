@@ -3,7 +3,7 @@ import './EventHeader.css'
 const EventHeader = () => {
   return (
     <div className='EventHeader'>
-        EventHeader works
+      <h1>Events</h1>
     </div>
   )
 };
