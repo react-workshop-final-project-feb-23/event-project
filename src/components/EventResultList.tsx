@@ -1,8 +1,8 @@
-import './EventResult.css'
+import './EventResultList.css'
 
 const EventResult = () => {
   return (
-    <div className='EventResult'>
+    <div className='EventResultList'>
       <EventResult/>
     </div>
   )
