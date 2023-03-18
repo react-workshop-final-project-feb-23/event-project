@@ -15,10 +15,10 @@ const EventDetails = () => {
   const [event, setEvent] = useState<any | undefined>();
   const pathId: string | undefined = useParams().id;
   const navigate = useNavigate();
-
+  // pathId for testing -G5v0Z98m2Lv3m, vvG1IZ9074wU4P
   useEffect(() => {
     if (pathId) {
-      getEventById("G5dIZ9015E3iq")
+      getEventById(pathId)
         .then((res) => {
           if (res) {
             setEvent(res);
