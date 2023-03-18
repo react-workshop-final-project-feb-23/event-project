@@ -1,13 +1,18 @@
-import EventResult from './EventResult';
-import './EventResultList.css'
+import { useContext } from "react";
+import EventResult from "./EventResult";
+import "./EventResultList.css";
+
+import { BucketListContext } from "../context/BucketListContext";
 
 const EventResultList = () => {
+  const { bucketList } = useContext(BucketListContext);
   return (
-    <div className='EventResultList'>
+    <div className="EventResultList">
       <h1>event list</h1>
-      <EventResult/>
+      <h2>Bucket List from context: {JSON.stringify(bucketList)}</h2>
+      <EventResult />
     </div>
-  )
+  );
 };
 
 export default EventResultList;
