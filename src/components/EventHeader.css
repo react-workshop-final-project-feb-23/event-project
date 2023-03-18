@@ -1,0 +1,5 @@
+.EventHeader h1 {
+    display: flex;
+    font-size: 40px;
+    color: white;
+}

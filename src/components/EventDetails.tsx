@@ -39,17 +39,17 @@ const EventDetails = () => {
               rowSpacing={1}
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-              <Grid item xs={4}>
+              <Grid item xs={6}>
                 <img
                   className="image"
                   src={event?._embedded.attractions[0].images[0].url}
                   alt="the GIF"
                 />{" "}
               </Grid>
-              <Grid item xs={1}>
+              {/* <Grid item xs={2}>
                 <h3>VS</h3>
-              </Grid>
-              <Grid item xs={4}>
+              </Grid> */}
+              <Grid item xs={6}>
                 <img
                   className="image"
                   src={event?._embedded.attractions[1].images[6].url}
@@ -73,7 +73,7 @@ const EventDetails = () => {
                 </h2>
               </Grid>
 
-              <Grid item xs={4}>
+              <Grid item xs={6}>
                 <h1>Price Range</h1>
                 <Box sx={{ width: "100%" }}>
                   <Grid
@@ -81,10 +81,10 @@ const EventDetails = () => {
                     rowSpacing={1}
                     columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                   >
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                       <h2>Min: ${event?.priceRanges[0]?.min}</h2>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                       <h2>Max: ${event?.priceRanges[0]?.max}</h2>
                     </Grid>
                   </Grid>
