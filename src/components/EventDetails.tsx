@@ -7,6 +7,11 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import EventSocial from "./EventSocial";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import EventSeatOutlinedIcon from "@mui/icons-material/EventSeatOutlined";
+import StadiumOutlinedIcon from "@mui/icons-material/StadiumOutlined";
 
 const EventDetails = () => {
   const [event, setEvent] = useState<any | undefined>();
@@ -17,7 +22,6 @@ const EventDetails = () => {
     if (pathId) {
       getEventById("G5vYZ98KcFtaq")
         .then((res) => {
-          console.log("test res", res);
           if (res) {
             setEvent(res);
           } else {
@@ -30,7 +34,45 @@ const EventDetails = () => {
 
   return (
     <div className="EventDetails">
-      <h1>{event?.name}</h1>
+      <Box sx={{ width: "100%" }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={5}>
+            <h1>{event?.name}</h1>
+          </Grid>
+          <Grid item xs={7}>
+            <Box sx={{ width: "100%" }}>
+              <Grid
+                container
+                rowSpacing={1}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              >
+                <Grid item xs={2}>
+                  <StadiumOutlinedIcon style={{fontSize: 80, paddingTop: 30, paddingRight: 10, color: 'green'}}/>
+                </Grid>
+                <Grid item xs={6}>
+                  <h2>Venue: {event?._embedded.venues[0].name}</h2>
+                  <h3>
+                    {event?._embedded.venues[0].address.line1},{" "}
+                    {event?._embedded.venues[0].city.name},{" "}
+                    {event?._embedded.venues[0].state.name}
+                  </h3>
+                  <h3>
+                    {event?._embedded.venues[0].country.countryCode},{" "}
+                    {event?._embedded.venues[0].postalCode}
+                  </h3>
+                </Grid>
+                <Grid item xs={4}>
+                  <img
+                    className="image1"
+                    src={event?._embedded.venues[0].images[0].url}
+                    alt="the GIF"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
       {event ? (
         <>
           <Box sx={{ width: "100%" }}>
@@ -44,7 +86,8 @@ const EventDetails = () => {
                   className="image"
                   src={event?._embedded.attractions[0].images[0].url}
                   alt="the GIF"
-                />{" "}
+                />
+                <EventSocial eventSocial={event?._embedded.attractions[0]} />
               </Grid>
               {/* <Grid item xs={2}>
                 <h3>VS</h3>
@@ -54,7 +97,8 @@ const EventDetails = () => {
                   className="image"
                   src={event?._embedded.attractions[1].images[6].url}
                   alt="the GIF"
-                />{" "}
+                />
+                <EventSocial eventSocial={event?._embedded.attractions[1]} />
               </Grid>
             </Grid>
           </Box>
@@ -66,15 +110,30 @@ const EventDetails = () => {
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
               <Grid item xs={6}>
-                <h1>Event Date and Time: </h1>
-                <h2>
+                <h1 className="title">
+                  <CalendarMonthIcon /> Event Date and Time:{" "}
+                </h1>
+                <Box sx={{ width: "100%", paddingLeft: 20 }}>
+                  <Grid
+                    container
+                    rowSpacing={1}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  >
+                    <Grid item xs={12}>
+                    <h2 style={{ paddingLeft: 50 }}>
                   {event?.dates?.start?.localDate},{" "}
                   {event?.dates?.start?.localTime}
-                </h2>
+                </h2>                    </Grid>
+                  </Grid>
+                </Box>
+               
               </Grid>
 
               <Grid item xs={6}>
-                <h1>Price Range</h1>
+                <h1 className="title">
+                  <MonetizationOnIcon />
+                  Price Range
+                </h1>
                 <Box sx={{ width: "100%" }}>
                   <Grid
                     container
@@ -92,9 +151,14 @@ const EventDetails = () => {
               </Grid>
             </Grid>
           </Box>
-          <p >
+          <p>
             <a href={event?.url} target="_blank" rel="noreferrer">
-              <h3 className=".link">Link to Event</h3>
+              <span className="link">
+                <EventSeatOutlinedIcon
+                  style={{ fontSize: 35, paddingRight: 5 }}
+                />
+                Link to Event
+              </span>
             </a>
           </p>
         </>
@@ -103,27 +167,6 @@ const EventDetails = () => {
           Id of: {pathId} not found. <Link to="/">Go Home</Link>
         </p>
       )}
-
-      {/* {event ? (
-        <>
-          <h3>{event?.name}</h3>
-          <div >
-          <img src={event?._embedded.attractions[0].images[6].url} alt="the GIF" />
-          <p>VS</p>
-          <img src={event?._embedded.attractions[1].images[0].url} alt="the GIF" />
-
-          </div>
-          <p className=".link">
-            <a href={event?.url} target="_blank" rel="noreferrer">
-              Link to Event
-            </a>
-          </p>
-        </>
-      ) : (
-        <p>
-          Id of: {pathId} not found. <Link to="/">Go Home</Link>
-        </p>
-      )} */}
     </div>
   );
 };

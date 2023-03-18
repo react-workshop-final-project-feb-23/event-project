@@ -1,12 +1,20 @@
 .EventDetails {
-    padding: 30px;
+    padding: 20px;
 }
 
-.EventDetails img {
+.EventDetails .image {
     width: 100%;
 }
 
 .EventDetails a {
     text-align: center;
-   
+}
+
+.EventDetails .title {
+    text-align: center;
+}
+
+.EventDetails p {
+    text-align: center;
+    font-size: 30px;
 }

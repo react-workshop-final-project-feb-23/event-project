@@ -3,3 +3,9 @@
     font-size: 40px;
     color: white;
 }
+
+.EventHeader {
+    position: sticky;
+    top: 0;
+    padding: 0;
+}
