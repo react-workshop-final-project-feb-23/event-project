@@ -7,7 +7,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import LocalActivityOutlinedIcon from "@mui/icons-material/LocalActivityOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
@@ -40,7 +40,7 @@ const EventHeader = () => {
             <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
               <Link href="/favorites" underline="hover">
                 <h1>
-                  <FavoriteBorderOutlinedIcon
+                  <FavoriteIcon
                     style={{ color: "yellow", fontSize: 50, paddingRight: 10 }}
                     fontSize="large"
                   />
