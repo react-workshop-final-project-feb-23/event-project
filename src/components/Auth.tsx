@@ -28,50 +28,55 @@ const Auth = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (isSignup) {
-      if (sessionStorage.getItem("userDetails")) {
-        const storedArray: UserDetails[] = JSON.parse(
-          sessionStorage?.getItem("userDetails") || "[]"
+    if (input.email && input.password) {
+      if (isSignup) {
+        if (sessionStorage.getItem("userDetails")) {
+          const storedArray: UserDetails[] = JSON.parse(
+            sessionStorage?.getItem("userDetails") || "[]"
+          );
+          console.log(
+            JSON.parse(sessionStorage?.getItem("userDetails") || "[]")
+          );
+          storedArray.push(input);
+          sessionStorage.setItem("userDetails", JSON.stringify(storedArray));
+          console.log("here");
+        } else {
+          const array: UserDetails[] = [];
+          array.push(input);
+          sessionStorage.setItem("userDetails", JSON.stringify(array));
+        }
+        setIsSignup(false);
+      } else {
+        const userDetails: UserDetails[] = JSON.parse(
+          sessionStorage.getItem("userDetails") || "[]"
         );
-        console.log(JSON.parse(sessionStorage?.getItem("userDetails") || "[]"));
-        storedArray.push(input);
-        sessionStorage.setItem("userDetails", JSON.stringify(storedArray));
-        console.log("here");
-      } else {
-        const array: UserDetails[] = [];
-        array.push(input);
-        sessionStorage.setItem("userDetails", JSON.stringify(array));
-      }
-      setIsSignup(false);
-    } else {
-      const userDetails: UserDetails[] = JSON.parse(
-        sessionStorage.getItem("userDetails") || "[]"
-      );
-      if (userDetails.length > 0) {
-        userDetails.forEach((element) => {
-          console.log("input", input, "element", element);
-          if (element?.email !== null && element?.password !== null) {
-            if (
-              input.email === element.email &&
-              input.password === element.password
-            ) {
-              sessionStorage.setItem("logedIn", JSON.stringify(true));
-              setLoggedIn(true);
-
-              navigate("/");
-              window.location.reload();
+        if (userDetails.length > 0) {
+          userDetails.forEach((element) => {
+            if (element?.email !== null && element?.password !== null) {
+              if (
+                input.email === element.email &&
+                input.password === element.password
+              ) {
+                sessionStorage.setItem("logedIn", JSON.stringify(true));
+                sessionStorage.setItem("userName", JSON.stringify(element.name));
+                setLoggedIn(true);
+                navigate("/");
+                window.location.reload();
+              } else {
+                sessionStorage.setItem("logedIn", JSON.stringify(false));
+                setLoggedIn(false);
+              }
             } else {
-              sessionStorage.setItem("logedIn", JSON.stringify(false));
-              setLoggedIn(false);
+              window.alert("User Details Not Found");
             }
-          } else {
-            window.alert("User Details Not Found");
-          }
-        });
-      } else {
-        window.alert("User Details Not Found, Please signup");
-        setIsSignup(true);
+          });
+        } else {
+          window.alert("User Details Not Found, Please signup");
+          setIsSignup(true);
+        }
       }
+    } else {
+      window.alert("Please enter details for Login/Signup");
     }
   };
 

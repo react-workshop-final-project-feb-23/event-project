@@ -18,9 +18,9 @@ if(loggedIn === "false") {
 }
 
 function App() {
+
   return (
     <div className="App">
-     {loggedIn}
         <Router>
         {loggedIn && <EventHeader /> }
           <Routes>

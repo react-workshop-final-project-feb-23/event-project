@@ -10,6 +10,7 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import EventSeatOutlinedIcon from "@mui/icons-material/EventSeatOutlined";
 import StadiumOutlinedIcon from "@mui/icons-material/StadiumOutlined";
+import Map from "./Map";
 
 const EventDetails = () => {
   const [event, setEvent] = useState<any | undefined>();
@@ -41,7 +42,17 @@ const EventDetails = () => {
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
               <Grid item xs={5}>
-                <h1>{event?.name}</h1>
+                <h1>
+                  {event?.name} (
+                    <a href={event?.url} target="_blank" rel="noreferrer">
+                      <span>
+                        <EventSeatOutlinedIcon
+                          style={{ fontSize: 35, paddingRight: 5 }}
+                        />
+                        Link to Event
+                      </span>
+                    </a> ) 
+                </h1>
               </Grid>
               <Grid item xs={7}>
                 <Box sx={{ width: "100%" }}>
@@ -55,7 +66,7 @@ const EventDetails = () => {
                         style={{
                           fontSize: 80,
                           paddingTop: 30,
-                          paddingRight: 10,
+                          paddingRight: 5,
                           color: "green",
                         }}
                       />
@@ -84,6 +95,54 @@ const EventDetails = () => {
               </Grid>
             </Grid>
           </Box>
+          <Box sx={{ width: "100%" }}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            >
+              <Grid item xs={6}>
+                <h1 className="title">
+                  <CalendarMonthIcon /> Event Date and Time:{" "}
+                </h1>
+                <Box sx={{ width: "100%", paddingLeft: 20 }}>
+                  <Grid
+                    container
+                    rowSpacing={1}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  >
+                    <Grid item xs={12}>
+                      <h2 style={{ paddingLeft: 50 }}>
+                        {event?.dates?.start?.localDate},{" "}
+                        {event?.dates?.start?.localTime}
+                      </h2>{" "}
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+
+              <Grid item xs={6}>
+                <h1 className="title">
+                  <MonetizationOnIcon />
+                  Price Range
+                </h1>
+                <Box sx={{ width: "100%" }}>
+                  <Grid
+                    container
+                    rowSpacing={1}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  >
+                    <Grid item xs={6}>
+                      <h2>Min: ${event?.priceRanges[0]?.min}</h2>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <h2>Max: ${event?.priceRanges[0]?.max}</h2>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
           {event?._embedded.attractions.length > 1 ? (
             <>
               <Box sx={{ width: "100%" }}>
@@ -102,9 +161,7 @@ const EventDetails = () => {
                       eventSocial={event?._embedded.attractions[0]}
                     />
                   </Grid>
-                  {/* <Grid item xs={2}>
-                <h3>VS</h3>
-              </Grid> */}
+
                   <Grid item xs={6}>
                     <img
                       className="image"
@@ -117,65 +174,6 @@ const EventDetails = () => {
                   </Grid>
                 </Grid>
               </Box>
-
-              <Box sx={{ width: "100%" }}>
-                <Grid
-                  container
-                  rowSpacing={1}
-                  columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                >
-                  <Grid item xs={6}>
-                    <h1 className="title">
-                      <CalendarMonthIcon /> Event Date and Time:{" "}
-                    </h1>
-                    <Box sx={{ width: "100%", paddingLeft: 20 }}>
-                      <Grid
-                        container
-                        rowSpacing={1}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                      >
-                        <Grid item xs={12}>
-                          <h2 style={{ paddingLeft: 50 }}>
-                            {event?.dates?.start?.localDate},{" "}
-                            {event?.dates?.start?.localTime}
-                          </h2>{" "}
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <h1 className="title">
-                      <MonetizationOnIcon />
-                      Price Range
-                    </h1>
-                    <Box sx={{ width: "100%" }}>
-                      <Grid
-                        container
-                        rowSpacing={1}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                      >
-                        <Grid item xs={6}>
-                          <h2>Min: ${event?.priceRanges[0]?.min}</h2>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <h2>Max: ${event?.priceRanges[0]?.max}</h2>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Box>
-              <p>
-                <a href={event?.url} target="_blank" rel="noreferrer">
-                  <span className="link">
-                    <EventSeatOutlinedIcon
-                      style={{ fontSize: 35, paddingRight: 5 }}
-                    />
-                    Link to Event
-                  </span>
-                </a>
-              </p>
             </>
           ) : (
             <>
@@ -195,72 +193,11 @@ const EventDetails = () => {
                       eventSocial={event?._embedded.attractions[0]}
                     />
                   </Grid>
-                  {/* <Grid item xs={2}>
-                <h3>VS</h3>
-              </Grid> */}
                 </Grid>
               </Box>
-
-              <Box sx={{ width: "100%" }}>
-                <Grid
-                  container
-                  rowSpacing={1}
-                  columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                >
-                  <Grid item xs={6}>
-                    <h1 className="title">
-                      <CalendarMonthIcon /> Event Date and Time:{" "}
-                    </h1>
-                    <Box sx={{ width: "100%", paddingLeft: 20 }}>
-                      <Grid
-                        container
-                        rowSpacing={1}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                      >
-                        <Grid item xs={12}>
-                          <h2 style={{ paddingLeft: 50 }}>
-                            {event?.dates?.start?.localDate},{" "}
-                            {event?.dates?.start?.localTime}
-                          </h2>{" "}
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <h1 className="title">
-                      <MonetizationOnIcon />
-                      Price Range
-                    </h1>
-                    <Box sx={{ width: "100%" }}>
-                      <Grid
-                        container
-                        rowSpacing={1}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                      >
-                        <Grid item xs={6}>
-                          <h2>Min: ${event?.priceRanges[0]?.min}</h2>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <h2>Max: ${event?.priceRanges[0]?.max}</h2>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Box>
-              <p>
-                <a href={event?.url} target="_blank" rel="noreferrer">
-                  <span className="link">
-                    <EventSeatOutlinedIcon
-                      style={{ fontSize: 35, paddingRight: 5 }}
-                    />
-                    Link to Event
-                  </span>
-                </a>
-              </p>
             </>
           )}
+          <Map event={event} />
         </>
       ) : (
         <p>
