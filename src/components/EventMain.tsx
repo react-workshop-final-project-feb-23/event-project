@@ -2,7 +2,7 @@ import './EventMain.css'
 import EventResultList from './EventResultList';
 import EventSearchForm from './EventSearchForm';
 import { useEffect, useState } from "react";
-import { getEvents } from '../services/getEventById';
+import { getAllEvents } from '../services/getEventById';
 
 
 const EventMain = () => {
@@ -12,7 +12,7 @@ const EventMain = () => {
 
   useEffect(() => {
    
-      getEvents().then(res => setEvents(res));
+    getAllEvents().then(res => setEvents(res));
     
   }, [])
 

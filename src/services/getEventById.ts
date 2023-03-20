@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const api_key: string = process.env.REACT_APP_GIPHY_API_KEY || "";
+const api_key: string = process.env.REACT_APP_TICKETMASTER_API_KEY || "";
 
 
 
@@ -12,7 +12,8 @@ export const getEventById = (event_Id: string): Promise<any> => {
     }).then((res) => res.data);
 }
 
-export const getEvents = (): Promise<any> => {
+
+export const getAllEvents = (): Promise<any> => {
     return axios.get(`https://app.ticketmaster.com/discovery/v2/events.json`, {
         params: {
             apikey: api_key
