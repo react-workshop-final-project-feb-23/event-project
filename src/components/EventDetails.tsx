@@ -15,6 +15,7 @@ import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 import StadiumDetails from "./StadiumDetails";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
+import moment from "moment";
 
 const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -71,7 +72,7 @@ const EventDetails = () => {
                       />
                       Link to Event
                     </span>
-                  </a>{" "}
+                  </a>
                   )
                 </h1>
               </Grid>
@@ -109,12 +110,12 @@ const EventDetails = () => {
                     <Grid item xs={6}>
                       <h2>Venue: {event?._embedded.venues[0].name}</h2>
                       <h3>
-                        {event?._embedded.venues[0].address.line1},{" "}
-                        {event?._embedded.venues[0].city.name},{" "}
+                        {event?._embedded.venues[0].address.line1},
+                        {event?._embedded.venues[0].city.name},
                         {event?._embedded.venues[0].state.name}
                       </h3>
                       <h3>
-                        {event?._embedded.venues[0].country.countryCode},{" "}
+                        {event?._embedded.venues[0].country.countryCode},
                         {event?._embedded.venues[0].postalCode}
                       </h3>
                     </Grid>
@@ -158,7 +159,7 @@ const EventDetails = () => {
             >
               <Grid item xs={6}>
                 <h1 className="title">
-                  <CalendarMonthIcon /> Event Date and Time:{" "}
+                  <CalendarMonthIcon /> Event Date and Time:
                 </h1>
                 <Box sx={{ width: "100%", paddingLeft: 20 }}>
                   <Grid
@@ -168,9 +169,14 @@ const EventDetails = () => {
                   >
                     <Grid item xs={12}>
                       <h2 style={{ paddingLeft: 50 }}>
-                        {event?.dates?.start?.localDate},{" "}
-                        {event?.dates?.start?.localTime}
-                      </h2>{" "}
+                        {moment(event?.dates?.start?.localDate, "Y/M/D").format(
+                          "dddd, MMMM D, Y"
+                        )}{" "}
+                        at{" "}
+                        {moment(event?.dates?.start?.localTime, "h/m/s").format(
+                          "hh:mm A"
+                        )}
+                      </h2>
                     </Grid>
                   </Grid>
                 </Box>
@@ -207,22 +213,35 @@ const EventDetails = () => {
                   columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                 >
                   <Grid item xs={6}>
-                    <img
-                      className="image"
-                      src={event?._embedded.attractions[0]?.images[0].url}
-                      alt="the GIF"
-                    />
+                    <a
+                      href={event?._embedded.attractions[0]?.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        className="image"
+                        src={event?._embedded.attractions[0]?.images[0].url}
+                        alt="the GIF"
+                      />
+                    </a>
+
                     <EventSocial
                       eventSocial={event?._embedded.attractions[0]}
                     />
                   </Grid>
 
                   <Grid item xs={6}>
-                    <img
-                      className="image"
-                      src={event?._embedded.attractions[1]?.images[0].url}
-                      alt="the GIF"
-                    />
+                    <a
+                      href={event?._embedded.attractions[1]?.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        className="image"
+                        src={event?._embedded.attractions[1]?.images[0].url}
+                        alt="the GIF"
+                      />
+                    </a>
                     <EventSocial
                       eventSocial={event?._embedded.attractions[1]}
                     />
@@ -232,17 +251,20 @@ const EventDetails = () => {
             </>
           ) : (
             <>
-              <Box sx={{ width: "100%", textAlign: "center"}}>
-                <Grid
-                  container
-                  rowSpacing={1}
-                >
+              <Box sx={{ width: "100%", textAlign: "center" }}>
+                <Grid container rowSpacing={1}>
                   <Grid>
-                    <img
-                      className="image"
-                      src={event?._embedded.attractions[0]?.images[0].url}
-                      alt="the GIF"
-                    />
+                    <a
+                      href={event?._embedded.attractions[0]?.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        className="image"
+                        src={event?._embedded.attractions[0]?.images[0].url}
+                        alt="the GIF"
+                      />
+                    </a>
                     <EventSocial
                       eventSocial={event?._embedded.attractions[0]}
                     />
