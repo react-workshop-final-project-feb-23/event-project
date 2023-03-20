@@ -11,3 +11,11 @@ export const getEventById = (event_Id: string): Promise<any> => {
         },
     }).then((res) => res.data);
 }
+
+export const getEvents = (): Promise<any> => {
+    return axios.get(`https://app.ticketmaster.com/discovery/v2/events.json`, {
+        params: {
+            apikey: api_key
+        },
+    }).then((res) => res.data);
+}

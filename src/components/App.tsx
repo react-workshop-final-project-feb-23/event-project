@@ -31,7 +31,7 @@ function App() {
             {loggedIn &&  <Route path="/event/:id" element={<EventDetails />} />}
             {/* Wildcard - redirect - asterick*/}
             {loggedIn && <Route path="*" element={<Navigate to="/signin" />} />}
-            {loggedIn &&  <Route path="/favorites" element={<EventResultList />} />}
+            {/* {loggedIn &&  <Route path="/favorites" element={<EventResultList />} />} */}
           </Routes>
         </Router>
     </div>

@@ -4,14 +4,21 @@ import "./EventResultList.css";
 
 import { BucketListContext } from "../context/BucketListContext";
 
-const EventResultList = () => {
+
+interface ResultListProps {
+  events: any;
+}
+
+const EventResultList = ({events}: ResultListProps) => {
+  console.log('test', events)
   const { bucketList } = useContext(BucketListContext);
   return (
-    <div className="EventResultList">
-      <h1>event list</h1>
-      <h2>Bucket List from context: {JSON.stringify(bucketList)}</h2>
-      <EventResult />
-    </div>
+    <div className="ResultsList">
+    <h2>Results</h2>
+    <ul>
+      {events?._embedded?.events?.map((item: any)=> (<EventResult key={`${item.id} ${Math.random()}`} event={item}/>))}
+    </ul>
+  </div>
   );
 };
 
