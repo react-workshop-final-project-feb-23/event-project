@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const api_key: string = process.env.REACT_APP_GIPHY_API_KEY || "";
+const api_key: string = process.env.REACT_APP_TICKETMASTER_API_KEY || "";
 
 
 
