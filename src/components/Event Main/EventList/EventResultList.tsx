@@ -25,7 +25,7 @@ const EventResultList = ({
   const { bucketList } = useContext(BucketListContext);
   return (
     <div className="ResultsList" style={{paddingTop: 20}}>
-      <h1 style={{paddingLeft: 20}}>
+      <h1 style={{paddingLeft: 20,  backgroundColor: 'ThreeDFace'}}>
         Events List{" "}
         <Button
           size="large"
@@ -35,7 +35,7 @@ const EventResultList = ({
           Next 20 records <NavigateNextIcon/>
         </Button>
       </h1>
-      <Grid container style={{ display: "grid" }}>
+      <Grid container style={{ display: "grid", backgroundColor: 'black' }}>
         <Grid item  xs={12}>
           {events?._embedded?.events?.map((item: any) => (
             <EventResult key={`${item.id} ${Math.random()}`} event={item} />
