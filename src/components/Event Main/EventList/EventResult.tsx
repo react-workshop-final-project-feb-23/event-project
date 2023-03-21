@@ -18,7 +18,7 @@ interface ResultProps {
 
 const EventResult = ({ event }: ResultProps) => {
   return (
-    
+        
         <Card style={{maxWidth: 500,  margin: '0px 0px 20px 20px'}}>
           <>
             <CardMedia

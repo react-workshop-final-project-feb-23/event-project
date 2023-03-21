@@ -2,20 +2,25 @@ import './EventMain.css'
 import EventResultList from './EventList/EventResultList'
 import EventSearchForm from './EventSearch/EventSearchForm'
 import { useEffect, useState } from 'react'
-import { getAllEvents } from '../../services/getEventById'
+import { getAllEvents, getNext20EventsList } from '../../services/getEventById'
 
 const EventMain = () => {
   const [events, setEvents] = useState<any[]>([])
-  const [searchTerm, setSearchTerm] = useState('')
+  const [next20RecordsParams, setNext20RecordsParams] = useState('');
+
 
   useEffect(() => {
-    getAllEvents().then(res => setEvents(res))
-  }, [])
+    if(next20RecordsParams) {
+      getNext20EventsList(next20RecordsParams).then(res => setEvents(res))
+    } else {
+      getAllEvents().then(res => setEvents(res))
+    }
+  }, [next20RecordsParams])
 
   return (
     <div className='EventMain'>
       <EventSearchForm />
-      <EventResultList events={events} />
+      <EventResultList events={events}  setNext20RecordsParams={setNext20RecordsParams}/>
     </div>
   )
 }

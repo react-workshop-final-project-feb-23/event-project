@@ -104,6 +104,8 @@ const EventDetails = () => {
                       </h3>
                     </Grid>
                     <Grid item xs={4}>
+                    {event?._embedded.venues[0]?.images[0]?.url}
+
                       <ClickAwayListener onClickAway={handleTooltipClose}>
                         <CustomWidthTooltip
                           PopperProps={{
@@ -121,14 +123,18 @@ const EventDetails = () => {
                           }
                           style={{ width: 100, height: 100 }}
                         >
+                         
                           <img
                             className='image1'
-                            src={event?._embedded.venues[0]?.images[0].url}
+                            src={event?._embedded.venues[0]?.images[0]?.url}
                             alt='the GIF'
                             onClick={handleTooltipOpen}
                           />
+                          
                         </CustomWidthTooltip>
+                      
                       </ClickAwayListener>
+
                     </Grid>
                   </Grid>
                 </Box>
@@ -177,7 +183,7 @@ const EventDetails = () => {
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                   <Grid item xs={6}>
                     <a href={event?._embedded.attractions[0]?.url} target='_blank' rel='noreferrer'>
-                      <img className='image' src={event?._embedded.attractions[0]?.images[0].url} alt='the GIF' />
+                      <img className='image' src={event?._embedded.attractions[0]?.images[0]?.url} alt='the GIF' />
                     </a>
 
                     <EventSocial eventSocial={event?._embedded.attractions[0]} />
@@ -185,7 +191,7 @@ const EventDetails = () => {
 
                   <Grid item xs={6}>
                     <a href={event?._embedded.attractions[1]?.url} target='_blank' rel='noreferrer'>
-                      <img className='image' src={event?._embedded.attractions[1]?.images[0].url} alt='the GIF' />
+                      <img className='image' src={event?._embedded.attractions[1]?.images[0]?.url} alt='the GIF' />
                     </a>
                     <EventSocial eventSocial={event?._embedded.attractions[1]} />
                   </Grid>
@@ -198,7 +204,7 @@ const EventDetails = () => {
                 <Grid container rowSpacing={1}>
                   <Grid>
                     <a href={event?._embedded.attractions[0]?.url} target='_blank' rel='noreferrer'>
-                      <img className='image' src={event?._embedded.attractions[0]?.images[0].url} alt='the GIF' />
+                      <img className='image' src={event?._embedded.attractions[0]?.images[0]?.url} alt='the GIF' />
                     </a>
                     <EventSocial eventSocial={event?._embedded.attractions[0]} />
                   </Grid>
