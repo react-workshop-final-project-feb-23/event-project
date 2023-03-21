@@ -24,17 +24,17 @@ const EventResultList = ({
   console.log("test", events);
   const { bucketList } = useContext(BucketListContext);
   return (
-    <div className="ResultsList">
-      <h2>
-        Results{" "}
+    <div className="ResultsList" style={{paddingTop: 20}}>
+      <h1 style={{paddingLeft: 20}}>
+        Events List{" "}
         <Button
           size="large"
-          style={{ float: "right", fontSize: 20 }}
+          style={{ float: "right", fontSize: 25 }}
           onClick={handleNext20Records}
         >
           Next 20 records <NavigateNextIcon/>
         </Button>
-      </h2>
+      </h1>
       <Grid container style={{ display: "grid" }}>
         <Grid item  xs={12}>
           {events?._embedded?.events?.map((item: any) => (
