@@ -104,8 +104,6 @@ const EventDetails = () => {
                       </h3>
                     </Grid>
                     <Grid item xs={4}>
-                    {event?._embedded.venues[0]?.images[0]?.url}
-
                       <ClickAwayListener onClickAway={handleTooltipClose}>
                         <CustomWidthTooltip
                           PopperProps={{

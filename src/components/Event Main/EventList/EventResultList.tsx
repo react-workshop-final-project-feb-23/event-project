@@ -36,7 +36,7 @@ const EventResultList = ({
         </Button>
       </h2>
       <Grid container style={{ display: "grid" }}>
-        <Grid item>
+        <Grid item  xs={12}>
           {events?._embedded?.events?.map((item: any) => (
             <EventResult key={`${item.id} ${Math.random()}`} event={item} />
           ))}

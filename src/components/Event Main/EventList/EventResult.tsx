@@ -19,10 +19,10 @@ interface ResultProps {
 const EventResult = ({ event }: ResultProps) => {
   return (
         
-        <Card style={{maxWidth: 500,  margin: '0px 0px 20px 20px'}}>
+        <Card style={{maxWidth: 500, minWidth:500,  margin: '50px 90px 20px 20px', boxShadow: '10px 10px 50px #ccc', borderRadius: 10, display: 'inline-block'}}>
           <>
             <CardMedia
-              sx={{ height: 140 }}
+              sx={event?._embedded.attractions[1] !== undefined ? { height: 140 } : {height: 280}}
               image={event?._embedded.attractions[0]?.images[0].url}
               title="green iguana"
             />
