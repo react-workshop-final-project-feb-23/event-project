@@ -1,0 +1,13 @@
+.EventResult {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .EventResult.MuiTypography-root{
+    font-size: 150px;
+  }
+
+  .EventResult > MuiTypography-root  > MuiTypography-body2  >MuiCardHeader-title {
+  font-size: 2000px;
+}

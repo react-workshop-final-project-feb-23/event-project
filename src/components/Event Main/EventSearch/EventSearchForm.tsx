@@ -67,7 +67,7 @@ const EventSearchForm = () => {
         value={endTime}
         onChange={(value) => setEndTime(value)}
       />
-      <Button variant="outlined" type="submit" sx={{ borderRadius: 3 }}>
+      <Button variant="contained" type="submit" sx={{ borderRadius: 3 }}>
         Filter Results
       </Button>
     </form>

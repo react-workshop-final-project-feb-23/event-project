@@ -13,13 +13,13 @@ interface Props {
 }
 
 const EventSocial = ({ eventSocial }: Props) => {
-  return (
+  return ( eventSocial &&
     <div className="EventSocial">
       <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={2}>
             <Link
-              href={eventSocial?.externalLinks?.twitter[0].url}
+              href={eventSocial?.externalLinks?.twitter[0]?.url}
               target="_blank"
               rel="noreferrer"
               underline="hover"
@@ -34,7 +34,7 @@ const EventSocial = ({ eventSocial }: Props) => {
           </Grid>
           <Grid item xs={2}>
             <Link
-              href={eventSocial?.externalLinks?.wiki[0].url}
+              href={eventSocial?.externalLinks?.wiki[0]?.url}
               target="_blank"
               rel="noreferrer"
               underline="hover"
@@ -49,7 +49,7 @@ const EventSocial = ({ eventSocial }: Props) => {
           </Grid>
           <Grid item xs={2}>
             <Link
-              href={eventSocial?.externalLinks?.facebook[0].url}
+              href={eventSocial?.externalLinks?.facebook[0]?.url}
               target="_blank"
               rel="noreferrer"
               underline="hover"
@@ -64,7 +64,7 @@ const EventSocial = ({ eventSocial }: Props) => {
           </Grid>
           <Grid item xs={2}>
             <Link
-              href={eventSocial?.externalLinks?.instagram[0].url}
+              href={eventSocial?.externalLinks?.instagram[0]?.url}
               target="_blank"
               rel="noreferrer"
               underline="hover"
@@ -79,7 +79,7 @@ const EventSocial = ({ eventSocial }: Props) => {
           </Grid>
           <Grid item xs={2}>
             <Link
-              href={eventSocial?.externalLinks?.homepage[0].url}
+              href={eventSocial?.externalLinks?.homepage[0]?.url}
               target="_blank"
               rel="noreferrer"
               underline="hover"

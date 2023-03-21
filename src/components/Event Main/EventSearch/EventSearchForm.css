@@ -1,4 +1,12 @@
 .EventSearchForm {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form div {
+  background-color: white;
+}
+
+form button {
+  background-color: white;
 }
