@@ -52,9 +52,9 @@ const EventResult = ({ event }: ResultProps) => {
           </CardContent>
           <CardActions >
             <Link to={`/event/${event.id}`} style={{paddingRight: 20}}>
-              <Button size="small">Details</Button>
+              <Button size="large">Details</Button>
             </Link>
-            <Button size="small">
+            <Button size="large">
               <BookmarkAddOutlinedIcon />
               Add to Favorites
             </Button>
