@@ -3,13 +3,17 @@ import "./EventSearchForm.css";
 
 import { TextField, Button } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Autocomplete from "@mui/material/Autocomplete";
 import dayjs, { Dayjs } from "dayjs";
+import { getEvents } from "../../../services/getEvents";
+import { getLatLong } from "../../../services/geoLocation";
 
 const EventSearchForm = () => {
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
   const [startTime, setStartTime] = useState<Dayjs | null>(dayjs("2022-04-17"));
   const [endTime, setEndTime] = useState<Dayjs | null>(dayjs("2022-04-17"));
+  const [options, setOptions] = useState([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +23,12 @@ const EventSearchForm = () => {
       dayjs(startTime).toISOString(),
       dayjs(endTime).toISOString()
     );
+    getEvents(keyword);
+  };
+
+  const onLocationChange = () => {
+    console.log("onchange");
+    getLatLong(location);
   };
   return (
     <form className="EventSearchForm" onSubmit={handleSubmit}>
@@ -30,13 +40,22 @@ const EventSearchForm = () => {
         variant="outlined"
         placeholder="Keyword"
       />
-      <TextField
+      {/* <TextField
         name="location"
         value={location}
         onChange={(e: any) => setLocation(e.target.value)}
         type={"text"}
         variant="outlined"
         placeholder="Location"
+      /> */}
+      <Autocomplete
+        disablePortal
+        id="latlong"
+        filterOptions={(x) => x}
+        options={options}
+        onChange={(e) => console.log("On Change")}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Lat-Long" />}
       />
       <DatePicker
         label="Start Time"
