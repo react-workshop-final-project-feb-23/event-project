@@ -21,7 +21,6 @@ const EventResultList = ({
     setNext20RecordsParams(events._links.next.href);
   };
 
-  console.log("test", events);
   const { bucketList } = useContext(BucketListContext);
   return (
     <div className="ResultsList" style={{paddingTop: 20}}>

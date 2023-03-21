@@ -34,10 +34,8 @@ const Auth = () => {
       if (isSignup) {
         if (sessionStorage.getItem('userDetails')) {
           const storedArray: UserDetails[] = JSON.parse(sessionStorage?.getItem('userDetails') || '[]')
-          console.log(JSON.parse(sessionStorage?.getItem('userDetails') || '[]'))
           storedArray.push(input)
           sessionStorage.setItem('userDetails', JSON.stringify(storedArray))
-          console.log('here')
         } else {
           const array: UserDetails[] = []
           array.push(input)
