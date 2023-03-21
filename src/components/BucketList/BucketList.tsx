@@ -19,15 +19,18 @@ import DeleteIcon from '@mui/icons-material/Delete'
 // This is a basic MUI List, waiting for the bucketList context
 
 function BucketItem() {
+  const handleItemClick = () => console.log('Item Click')
+  const handleDeleteClick = () => console.log('Delete Click')
+
   return (
     <ListItem
       secondaryAction={
-        <IconButton>
+        <IconButton onClick={handleDeleteClick}>
           <DeleteIcon />
         </IconButton>
       }
     >
-      <ListItemButton onClick={() => console.log('hi')}>
+      <ListItemButton onClick={handleItemClick}>
         <ListItemAvatar>
           <Avatar>
             <EventIcon />
