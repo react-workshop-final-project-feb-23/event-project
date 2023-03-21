@@ -50,11 +50,11 @@ const EventResult = ({ event }: ResultProps) => {
               {event?._embedded.venues[0].postalCode}
             </h4>
           </CardContent>
-          <CardActions >
+          <CardActions style={{maxWidth: 500,  minWidth:450, display: 'inline-block', margin: '10px 30px 10px 10px'}}>
             <Link to={`/event/${event.id}`} style={{paddingRight: 20}}>
               <Button size="large">Details</Button>
             </Link>
-            <Button size="large">
+            <Button size="large" style={{ float: "right"}}>
               <BookmarkAddOutlinedIcon />
               Add to Favorites
             </Button>
