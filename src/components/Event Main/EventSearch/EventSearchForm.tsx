@@ -1,35 +1,40 @@
 import { useState } from "react";
 import "./EventSearchForm.css";
 
+import debounce from "lodash.debounce";
+
 import { TextField, Button } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Autocomplete from "@mui/material/Autocomplete";
 import dayjs, { Dayjs } from "dayjs";
 import { getEvents } from "../../../services/getEvents";
 import { getLatLong } from "../../../services/geoLocation";
+import { Place } from "../../../models/Geolocation";
 
-const EventSearchForm = () => {
+type Props = {
+  setEvents: React.Dispatch<React.SetStateAction<any[]>>;
+};
+
+const EventSearchForm = ({ setEvents }: Props) => {
   const [keyword, setKeyword] = useState("");
-  const [location, setLocation] = useState("");
-  const [startTime, setStartTime] = useState<Dayjs | null>(dayjs("2022-04-17"));
-  const [endTime, setEndTime] = useState<Dayjs | null>(dayjs("2022-04-17"));
-  const [options, setOptions] = useState([]);
+  const [latLong, setLatLong] = useState("");
+  const [startTime, setStartTime] = useState<Dayjs | null>(null);
+  const [endTime, setEndTime] = useState<Dayjs | null>(null);
+  const [options, setOptions] = useState<readonly Place[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(
-      keyword,
-      location,
-      dayjs(startTime).toISOString(),
-      dayjs(endTime).toISOString()
+    const startISO = startTime ? dayjs(startTime).format() : null;
+    const endISO = endTime ? dayjs(endTime).format() : null;
+    getEvents(keyword, latLong, startISO, endISO).then((data) =>
+      setEvents(data)
     );
-    getEvents(keyword);
   };
 
-  const onLocationChange = () => {
-    console.log("onchange");
-    getLatLong(location);
-  };
+  const handleChange = debounce((e) => {
+    getLatLong(e.target.value).then((data) => setOptions(data));
+  }, 2000);
+
   return (
     <form className="EventSearchForm" onSubmit={handleSubmit}>
       <TextField
@@ -40,22 +45,21 @@ const EventSearchForm = () => {
         variant="outlined"
         placeholder="Keyword"
       />
-      {/* <TextField
-        name="location"
-        value={location}
-        onChange={(e: any) => setLocation(e.target.value)}
-        type={"text"}
-        variant="outlined"
-        placeholder="Location"
-      /> */}
       <Autocomplete
         disablePortal
         id="latlong"
         filterOptions={(x) => x}
         options={options}
-        onChange={(e) => console.log("On Change")}
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Lat-Long" />}
+        getOptionLabel={(option) =>
+          typeof option === "string" ? option : option.display_name
+        }
+        onChange={(event, newValue) =>
+          setLatLong(`${newValue?.lat},${newValue?.lon}`)
+        }
+        renderInput={(params) => (
+          <TextField {...params} label="Lat-Long" onChange={handleChange} />
+        )}
       />
       <DatePicker
         label="Start Time"

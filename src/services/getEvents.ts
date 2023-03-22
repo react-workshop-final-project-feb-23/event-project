@@ -6,8 +6,8 @@ const api_key: string = process.env.REACT_APP_TICKETMASTER_API_KEY || "";
 export async function getEvents(
   keyword?: string,
   latlong?: string,
-  startDateTime?: Dayjs,
-  endDateTime?: Dayjs
+  startDateTime?: string | null,
+  endDateTime?: string | null
 ): Promise<any> {
   const params = {
     ...(keyword && { keyword: keyword }),
