@@ -17,12 +17,16 @@ import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import EventIcon from "@mui/icons-material/Event";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import { BucketListContext } from "../../../context/BucketListContext";
 
 interface ResultProps {
   event: any;
 }
 
 const EventResult = ({ event }: ResultProps) => {
+  const { addToBucketList, isEventInBucketList, removeEventFromBucketList } =
+    React.useContext(BucketListContext);
   return (
     <Card
       style={{
@@ -100,10 +104,25 @@ const EventResult = ({ event }: ResultProps) => {
         <Link to={`/event/${event.id}`} style={{ paddingRight: 20 }}>
           <Button size="large">Details</Button>
         </Link>
-        <Button size="large" style={{ float: "right" }}>
-          <BookmarkAddOutlinedIcon />
-          Add to Favorites
-        </Button>
+        {isEventInBucketList(event.id) ? (
+          <Button
+            size="large"
+            style={{ float: "right" }}
+            onClick={() => removeEventFromBucketList(event.id)}
+          >
+            <BookmarkRemoveIcon />
+            Remove from Bucket List
+          </Button>
+        ) : (
+          <Button
+            size="large"
+            style={{ float: "right" }}
+            onClick={() => addToBucketList(event)}
+          >
+            <BookmarkAddOutlinedIcon />
+            Add to Bucket List
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
