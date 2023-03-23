@@ -1,18 +1,18 @@
 import { createContext } from "react";
-import Event from "../models/Event";
+import IEvent from "../models/IEvent";
 
 interface BucketListContextModel {
-  bucketList: Event[];
-  addToBucketList: (gif: Event) => void;
+  bucketList: IEvent[];
+  addToBucketList: (gif: IEvent) => void;
   isEventInBucketList: (id: string) => boolean;
   removeEventFromBucketList: (id: string) => void;
 }
 
 const defaultValues: BucketListContextModel = {
   bucketList: [],
-  addToBucketList: () => {},
+  addToBucketList: () => { },
   isEventInBucketList: () => false,
-  removeEventFromBucketList: () => {},
+  removeEventFromBucketList: () => { },
 };
 
 export const BucketListContext = createContext(defaultValues);
