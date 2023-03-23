@@ -200,7 +200,7 @@ const EventDetails = () => {
             <>
               <Box sx={{ width: '100%', textAlign: 'center' }}>
                 <Grid container rowSpacing={1}>
-                  <Grid>
+                  <Grid item xs={12}>
                     <a href={event?._embedded.attractions[0]?.url} target='_blank' rel='noreferrer'>
                       <img className='image' src={event?._embedded.attractions[0]?.images[0]?.url} alt='the GIF' />
                     </a>
