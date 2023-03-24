@@ -22,6 +22,8 @@ const EventSearchForm = ({ setQueryParams }: Props) => {
   const [startTime, setStartTime] = useState<Dayjs | null>(null)
   const [endTime, setEndTime] = useState<Dayjs | null>(null)
   const [options, setOptions] = useState<readonly Place[]>([])
+  const [open, setOpen] = useState(false)
+  const loading = open && options.length === 0
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,6 +48,7 @@ const EventSearchForm = ({ setQueryParams }: Props) => {
       />
       <Autocomplete
         disablePortal
+        loading={loading}
         id='latlong'
         filterOptions={x => x}
         options={options}
@@ -53,6 +56,12 @@ const EventSearchForm = ({ setQueryParams }: Props) => {
         getOptionLabel={option => (typeof option === 'string' ? option : option.display_name)}
         onChange={(event, newValue) => setLatLong(`${newValue?.lat},${newValue?.lon}`)}
         renderInput={params => <TextField {...params} label='Lat-Long' onChange={handleChange} />}
+        onOpen={() => {
+          setOpen(true)
+        }}
+        onClose={() => {
+          setOpen(false)
+        }}
       />
       <DatePicker label='Start Time' value={startTime} onChange={value => setStartTime(value)} />
       <DatePicker label='End Time' value={endTime} onChange={value => setEndTime(value)} />
