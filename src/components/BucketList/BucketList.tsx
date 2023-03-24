@@ -30,7 +30,6 @@ function BucketItem({ item, removeItem }: { item: IEvent; removeItem: (id: strin
   const handleDeleteClick = () => removeItem(id)
   const avatarSrc = images && images?.length > 0 && images[4].url
 
-  console.log('event', item)
   return (
     <ListItem
       secondaryAction={

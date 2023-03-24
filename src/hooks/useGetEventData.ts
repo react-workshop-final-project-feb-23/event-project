@@ -41,6 +41,5 @@ export default function useGetEvents({ keyword, latlong, startDateTime, endDateT
     fetchEventData()
   }, [keyword, latlong, startDateTime, endDateTime, id])
 
-  console.log('error', error)
   return { data, error, isLoading }
 }

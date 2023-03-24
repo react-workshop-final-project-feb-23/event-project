@@ -19,7 +19,6 @@ const EventResultList = ({ events, setQueryParams }: ResultListProps) => {
     // setQueryParams({ url: events._links.next.href })
   }
 
-  console.log('events', events)
   const { bucketList } = useContext(BucketListContext)
   return (
     <div className='ResultsList' style={{ paddingTop: 20 }}>
