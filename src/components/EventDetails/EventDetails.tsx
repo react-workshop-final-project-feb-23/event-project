@@ -39,7 +39,7 @@ const EventDetails = () => {
   }
 
   const { data, error, isLoading } = useGetEvents({ id: pathId })
-  const event = data?._embedded?.events[0]
+  const event = data?._embedded?.events?.[0]
 
   return (
     <>
@@ -86,14 +86,14 @@ const EventDetails = () => {
                           </CustomWidthTooltip>
                         </Grid>
                         <Grid item xs={6}>
-                          <h2>Venue: {event?._embedded?.venues[0]?.name}</h2>
+                          <h2>Venue: {event?._embedded?.venues?.[0]?.name}</h2>
                           <h3>
-                            {event?._embedded?.venues[0]?.address?.line1},{event?._embedded?.venues[0]?.city?.name},
-                            {event?._embedded?.venues[0]?.state?.name}
+                            {event?._embedded?.venues?.[0]?.address?.line1},{event?._embedded?.venues?.[0]?.city?.name},
+                            {event?._embedded?.venues?.[0]?.state?.name}
                           </h3>
                           <h3>
-                            {event?._embedded?.venues[0]?.country?.countryCode},
-                            {event?._embedded?.venues[0]?.postalCode}
+                            {event?._embedded?.venues?.[0]?.country?.countryCode},
+                            {event?._embedded?.venues?.[0]?.postalCode}
                           </h3>
                         </Grid>
                         <Grid item xs={4}>
@@ -116,7 +116,7 @@ const EventDetails = () => {
                             >
                               <img
                                 className='image1'
-                                src={event?._embedded?.venues[0]?.images[0]?.url}
+                                src={event?._embedded?.venues?.[0]?.images[0]?.url}
                                 alt='the GIF'
                                 onClick={handleTooltipOpen}
                               />
@@ -154,10 +154,10 @@ const EventDetails = () => {
                     <Box sx={{ width: '100%' }}>
                       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={6}>
-                          <h2>Min: ${event?.priceRanges[0]?.min}</h2>
+                          <h2>Min: ${event?.priceRanges?.[0]?.min}</h2>
                         </Grid>
                         <Grid item xs={6}>
-                          <h2>Max: ${event?.priceRanges[0]?.max}</h2>
+                          <h2>Max: ${event?.priceRanges?.[0]?.max}</h2>
                         </Grid>
                       </Grid>
                     </Box>
@@ -169,18 +169,26 @@ const EventDetails = () => {
                   <Box sx={{ width: '100%', height: '100%', bgcolor: 'lightGray' }}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                       <Grid item xs={6}>
-                        <a href={event?._embedded?.attractions[0]?.url} target='_blank' rel='noreferrer'>
-                          <img className='image' src={event?._embedded?.attractions[0]?.images[0]?.url} alt='the GIF' />
+                        <a href={event?._embedded?.attractions?.[0]?.url} target='_blank' rel='noreferrer'>
+                          <img
+                            className='image'
+                            src={event?._embedded?.attractions?.[0]?.images?.[0]?.url}
+                            alt='the GIF'
+                          />
                         </a>
 
-                        <EventSocial eventSocial={event?._embedded?.attractions[0]} />
+                        <EventSocial eventSocial={event?._embedded?.attractions?.[0]} />
                       </Grid>
 
                       <Grid item xs={6}>
-                        <a href={event?._embedded?.attractions[1]?.url} target='_blank' rel='noreferrer'>
-                          <img className='image' src={event?._embedded?.attractions[1]?.images[0]?.url} alt='the GIF' />
+                        <a href={event?._embedded?.attractions?.[1]?.url} target='_blank' rel='noreferrer'>
+                          <img
+                            className='image'
+                            src={event?._embedded?.attractions?.[1]?.images?.[0]?.url}
+                            alt='the GIF'
+                          />
                         </a>
-                        <EventSocial eventSocial={event?._embedded?.attractions[1]} />
+                        <EventSocial eventSocial={event?._embedded?.attractions?.[1]} />
                       </Grid>
                     </Grid>
                   </Box>
@@ -190,10 +198,14 @@ const EventDetails = () => {
                   <Box sx={{ width: '100%', textAlign: 'center' }}>
                     <Grid container rowSpacing={1}>
                       <Grid item xs={12}>
-                        <a href={event?._embedded?.attractions[0]?.url} target='_blank' rel='noreferrer'>
-                          <img className='image' src={event?._embedded?.attractions[0]?.images[0]?.url} alt='the GIF' />
+                        <a href={event?._embedded?.attractions?.[0]?.url} target='_blank' rel='noreferrer'>
+                          <img
+                            className='image'
+                            src={event?._embedded?.attractions?.[0]?.images?.[0]?.url}
+                            alt='the GIF'
+                          />
                         </a>
-                        <EventSocial eventSocial={event?._embedded?.attractions[0]} />
+                        <EventSocial eventSocial={event?._embedded?.attractions?.[0]} />
                       </Grid>
                     </Grid>
                   </Box>
