@@ -6,18 +6,20 @@ import { BucketListContext } from '../../../context/BucketListContext'
 import Grid from '@mui/material/Grid'
 import { Box, Button } from '@mui/material'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import IEventQueryParams from '../../../models/IEventQueryParams'
 
 interface ResultListProps {
   events: any
-  setNext20RecordsParams: (s: string) => void
+  setQueryParams: React.Dispatch<React.SetStateAction<IEventQueryParams>>
 }
 
-const EventResultList = ({ events, setNext20RecordsParams }: ResultListProps) => {
+const EventResultList = ({ events, setQueryParams }: ResultListProps) => {
   const handleNext20Records = (e: any): void => {
     e.preventDefault()
-    setNext20RecordsParams(events._links.next.href)
+    // setQueryParams({ url: events._links.next.href })
   }
 
+  console.log('events', events)
   const { bucketList } = useContext(BucketListContext)
   return (
     <div className='ResultsList' style={{ paddingTop: 20 }}>
